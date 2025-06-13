@@ -1,0 +1,32 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: salekul
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: salekul
+  namespace: salekul
+  lebels:
+	app: salekul
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: salekul
+  template:
+    metadata:
+	  name: salekul
+      labels:
+        app: salekul
+    spec:
+      containers:
+      - name: salekul
+        image: rafaftahsin/ostad-devops-batch-2-app
+		imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+		  protocol: TCP
+	  restartPolicy: Always
